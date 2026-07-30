@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>葉宥辰｜專案經理・產品經理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10233F;
+    --ink-soft:#46536B;
+    --paper:#EDEFF0;
+    --paper-raised:#FFFFFF;
+    --amber:#C97C0A;
+    --amber-deep:#96590A;
+    --amber-tint:#F5E4C3;
+    --line:#D7DBE0;
+    --success:#2F7D5B;
+    --success-tint:#DCEEE4;
+    --font-display:'Space Grotesk', 'Noto Sans TC', sans-serif;
+    --font-body:'Noto Sans TC', 'Space Grotesk', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    --maxw:1040px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+
+  ::selection{background:var(--amber-tint);color:var(--ink);}
+
+  :focus-visible{
+    outline:2.5px solid var(--amber);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(237,239,240,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-display);font-weight:700;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .brand-mark{
+    width:34px;height:34px;border-radius:8px;
+    background:var(--ink);color:var(--amber-tint);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:13px;font-weight:500;
+    flex:none;
+  }
+  nav.links{display:flex;align-items:center;gap:28px;}
+  nav.links a{
+    font-size:14.5px;text-decoration:none;color:var(--ink-soft);
+    font-weight:500;
+    padding:4px 2px;border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.links a:hover{color:var(--ink);border-color:var(--amber);}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);
+    padding:9px 16px;border-radius:7px;
+    font-size:13.5px;font-weight:600;text-decoration:none;
+    white-space:nowrap;
+    transition:background .15s ease, transform .15s ease;
+  }
+  nav.links a.nav-cta{color:#FFFFFF;}
+  .nav-cta:hover{background:var(--amber-deep);transform:translateY(-1px);}
+  nav.links a.nav-cta:hover{color:#FFFFFF;}
+  .nav-toggle{display:none;}
+
+  /* ---------- STATUS PILL (signature element) ---------- */
+  .status-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:12.5px;font-weight:500;
+    padding:6px 12px 6px 10px;border-radius:100px;
+    letter-spacing:0.02em;
+  }
+  .status-pill.open{background:var(--success-tint);color:var(--success);}
+  .status-pill.closed{background:#EDEBE4;color:var(--ink-soft);}
+  .status-dot{
+    width:7px;height:7px;border-radius:50%;flex:none;
+  }
+  .status-pill.open .status-dot{background:var(--success);animation:pulse 2.2s ease-in-out infinite;}
+  .status-pill.closed .status-dot{background:#9AA2AC;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(47,125,91,0.45);}
+    50%{box-shadow:0 0 0 5px rgba(47,125,91,0);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .status-pill.open .status-dot{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 56px;}
+  .hero .status-pill{margin-bottom:22px;}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(34px, 5.4vw, 58px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    max-width:15ch;
+  }
+  .hero h1 .accent{color:var(--amber-deep);}
+  .hero p.lede{
+    font-size:clamp(16px, 1.7vw, 19px);
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0 0 34px;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:52px;}
+  .btn{
+    font-size:14.5px;font-weight:600;
+    padding:12px 22px;border-radius:8px;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border:1.5px solid transparent;
+  }
+  .btn-primary{background:var(--ink);color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(16,35,63,0.22);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .stat{
+    padding:20px 18px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(22px,2.6vw,30px);
+    color:var(--amber-deep);
+    display:block;
+  }
+  .stat .label{
+    font-size:12.5px;color:var(--ink-soft);
+    margin-top:4px;display:block;
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:64px 0;}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    margin-bottom:34px;
+  }
+  .section-eyebrow{
+    font-family:var(--font-mono);font-size:12.5px;
+    color:var(--amber-deep);letter-spacing:0.06em;
+    white-space:nowrap;
+  }
+  .section-eyebrow::before{content:"// ";color:var(--amber);}
+  .section-head h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(22px,2.6vw,28px);
+    margin:0;
+  }
+  .section-rule{
+    flex:1;height:1px;background:var(--line);
+    align-self:center;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:48px;
+    align-items:start;
+  }
+  .about-grid p{color:var(--ink-soft);font-size:16px;margin:0 0 16px;}
+  .about-grid p strong{color:var(--ink);font-weight:700;}
+  .info-card{
+    background:var(--paper-raised);border:1px solid var(--line);
+    border-radius:12px;padding:22px 24px;
+  }
+  .info-card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:14.5px;}
+  .info-card dt{font-family:var(--font-mono);color:var(--ink-soft);font-size:12.5px;padding-top:2px;}
+  .info-card dd{margin:0;font-weight:500;}
+
+  /* ---------- STORY / 自傳 ---------- */
+  .story-content{max-width:720px;}
+  .story-block{margin-bottom:34px;}
+  .story-block:last-child{margin-bottom:0;}
+  .story-block h4{
+    font-family:var(--font-mono);font-size:12.5px;font-weight:500;
+    color:var(--amber-deep);text-transform:uppercase;letter-spacing:0.05em;
+    margin:0 0 10px;
+  }
+  .story-block p{
+    font-family:var(--font-body);
+    font-size:16px;line-height:1.85;color:var(--ink);
+    margin:0;
+  }
+
+  /* ---------- COMPETENCY GRID ---------- */
+  .comp-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  }
+  .comp-card{
+    background:var(--paper-raised);border:1px solid var(--line);
+    border-radius:12px;padding:24px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .comp-card:hover{border-color:var(--amber);transform:translateY(-2px);}
+  .comp-tag{
+    font-family:var(--font-mono);font-size:12px;font-weight:500;
+    color:var(--amber-deep);background:var(--amber-tint);
+    display:inline-block;padding:3px 9px;border-radius:5px;
+    margin-bottom:14px;
+  }
+  .comp-card h3{
+    font-family:var(--font-display);font-size:17.5px;margin:0 0 8px;
+  }
+  .comp-card p{margin:0;color:var(--ink-soft);font-size:14.5px;}
+
+  /* ---------- TIMELINE / EXPERIENCE ---------- */
+  .timeline{display:flex;flex-direction:column;gap:18px;}
+  .job{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:26px 28px;
+  }
+  .job-id{
+    font-family:var(--font-mono);
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+  .job-id .num{
+    display:block;font-size:26px;font-weight:700;color:var(--ink);
+    font-family:var(--font-display);
+    margin-bottom:8px;
+  }
+  .job-head{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;
+    margin-bottom:6px;
+  }
+  .job-head h3{
+    font-family:var(--font-display);font-size:19px;margin:0;
+  }
+  .job-meta{
+    color:var(--ink-soft);font-size:14px;margin:0 0 14px;
+  }
+  .job-meta .period{
+    font-family:var(--font-mono);font-size:12.5px;
+    margin-left:2px;
+  }
+  .job ul{margin:0 0 16px;padding-left:20px;}
+  .job li{margin-bottom:7px;font-size:14.5px;color:var(--ink);}
+  .job li::marker{color:var(--amber);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{
+    font-family:var(--font-mono);font-size:11.5px;
+    background:var(--paper);border:1px solid var(--line);
+    padding:4px 9px;border-radius:6px;color:var(--ink-soft);
+  }
+
+  /* ---------- PROJECTS / 專案實績 ---------- */
+  .project-group{margin-bottom:36px;}
+  .project-group:last-child{margin-bottom:0;}
+  .project-group-head{
+    display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .project-group-head .idx{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--amber-deep);
+    background:var(--amber-tint);padding:3px 9px;border-radius:5px;
+  }
+  .project-group-head h4{
+    font-family:var(--font-display);font-size:17px;margin:0;
+  }
+  .project-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+  }
+  .project-card{
+    background:var(--paper-raised);border:1px solid var(--line);
+    border-radius:12px;padding:18px 20px;
+    display:flex;flex-direction:column;gap:10px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .project-card:hover{border-color:var(--amber);transform:translateY(-2px);}
+  .project-card .name{
+    font-family:var(--font-display);font-weight:600;font-size:15.5px;
+    color:var(--ink);
+  }
+  .project-links{display:flex;flex-direction:column;gap:6px;}
+  .project-links a{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);
+    text-decoration:none;word-break:break-all;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .project-links a::before{content:"↗";color:var(--amber);flex:none;}
+  .project-links a:hover{color:var(--amber-deep);text-decoration:underline;}
+  .project-links .tag{
+    font-family:var(--font-mono);font-size:10.5px;color:var(--ink-soft);
+    background:var(--paper);border:1px solid var(--line);
+    padding:1px 6px;border-radius:4px;margin-left:2px;
+  }
+
+  @media (max-width:700px){
+    .project-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .skill-group h4{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--amber-deep);
+    text-transform:uppercase;letter-spacing:0.05em;margin:0 0 12px;
+  }
+  .skill-group .chip-row .chip{background:var(--paper-raised);}
+
+  /* ---------- EDU / CERT ---------- */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .edu-card{
+    background:var(--paper-raised);border:1px solid var(--line);
+    border-radius:12px;padding:22px 24px;
+  }
+  .edu-card h4{font-family:var(--font-display);font-size:15.5px;margin:0 0 4px;}
+  .edu-card .sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 10px;}
+  .edu-card .period{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);}
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{
+    background:var(--ink);color:#F2F0E9;
+    padding:64px 0 40px;margin-top:40px;
+  }
+  footer .wrap{display:flex;flex-direction:column;gap:26px;}
+  footer h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(26px,3.6vw,38px);margin:0;max-width:16ch;
+  }
+  footer p{color:#AAB4C4;max-width:48ch;margin:0;}
+  .footer-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;}
+  footer .btn-primary{background:var(--amber);color:var(--ink);}
+  footer .btn-primary:hover{background:var(--amber-tint);}
+  footer .btn-ghost{border-color:#33455E;color:#F2F0E9;}
+  footer .btn-ghost:hover{border-color:#F2F0E9;}
+  .footer-bottom{
+    display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;
+    border-top:1px solid #22314A;padding-top:22px;margin-top:18px;
+    font-size:12.5px;color:#7C889C;font-family:var(--font-mono);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .about-grid{grid-template-columns:1fr;}
+    .comp-grid{grid-template-columns:1fr;}
+    .skill-groups{grid-template-columns:1fr 1fr;}
+    .edu-grid{grid-template-columns:1fr;}
+    .stat-strip{grid-template-columns:1fr 1fr;}
+    .stat{border-bottom:1px solid var(--line);}
+    .stat:nth-child(2n){border-right:none;}
+  }
+
+  @media (max-width: 700px){
+    nav.links{
+      position:fixed;top:64px;left:0;right:0;bottom:0;
+      background:var(--paper);
+      flex-direction:column;align-items:flex-start;
+      padding:24px 28px;gap:22px;
+      transform:translateX(100%);
+      transition:transform .25s ease;
+      overflow-y:auto;
+    }
+    nav.links.open{transform:translateX(0);}
+    nav.links a{font-size:17px;}
+    .nav-toggle{
+      display:flex;align-items:center;justify-content:center;
+      width:38px;height:38px;border-radius:8px;
+      border:1px solid var(--line);background:var(--paper-raised);
+      cursor:pointer;
+    }
+    .nav-toggle span{display:block;width:16px;height:1.5px;background:var(--ink);position:relative;}
+    .nav-toggle span::before,.nav-toggle span::after{
+      content:"";position:absolute;left:0;width:16px;height:1.5px;background:var(--ink);
+    }
+    .nav-toggle span::before{top:-5px;}
+    .nav-toggle span::after{top:5px;}
+    .job{grid-template-columns:1fr;}
+    .job-id{display:flex;align-items:center;gap:10px;}
+    .job-id .num{margin-bottom:0;}
+    .skill-groups{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">葉</span>
+      葉宥辰
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#about">簡介</a>
+      <a href="#story">自傳</a>
+      <a href="#experience">經歷</a>
+      <a href="#projects">專案實績</a>
+      <a href="#skills">技能</a>
+      <a href="#education">學歷</a>
+      <a href="#contact" class="nav-cta">聯絡我</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <span class="status-pill open"><span class="status-dot"></span>OPEN · 現正求職中</span>
+    <h1>專案經理／產品經理<br><span class="accent">求職履歷</span></h1>
+    <p class="lede">12 年以上跨產業資歷，曾以正式頭銜擔任專案經理／產品經理，獨立完成網站建置、產品開發與政府補助案執行。擅長在資源有限的中小型組織中，把一個專案從零推到結案。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:yuchen3188@gmail.com">寄信給我</a>
+      <a class="btn btn-ghost" href="tel:0978310658">0978-310-658</a>
+      <a class="btn btn-ghost" href="#experience">看工作經歷 ↓</a>
+    </div>
+    <div class="stat-strip">
+      <div class="stat"><span class="num">12+</span><span class="label">年跨產業經歷</span></div>
+      <div class="stat"><span class="num">3×</span><span class="label">正式PM／產品經理頭銜</span></div>
+      <div class="stat"><span class="num">60+</span><span class="label">專案開發流程</span></div>
+      <div class="stat"><span class="num">100+</span><span class="label">提案設計</span></div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">ABOUT</span>
+      <h2>簡介</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>職涯橫跨<strong>廣告設計、產品開發與數位行銷</strong>，曾獨立完成多個網站與產品從需求訪談、架構規劃到上線的完整流程。熟悉系統需求分析（RA／SA）文件撰寫、跨部門溝通協調，也負責過政府補助計畫的撰寫與執行。</p>
+        <p>近期專案涵蓋 <strong>AI 客服系統導入</strong>（解決 70% 以上客服問題）、<strong>SEO 官網流量成長</strong>（上線 6 個月累積 15K 瀏覽次數）與 <strong>Meta 廣告投放優化</strong>，習慣用數字檢核成果，而不是只看做了什麼。</p>
+        <p>目前於台中尋找專案經理／產品經理職缺，全職、日班，也對遠端工作抱持開放態度。</p>
+      </div>
+      <div class="info-card">
+        <dl>
+          <dt>目前狀態</dt><dd>待業中・積極求職</dd>
+          <dt>應徵職稱</dt><dd>專案經理／產品經理</dd>
+          <dt>工作地點</dt><dd>台中市（可遠端）</dd>
+          <dt>工作型態</dt><dd>全職・日班</dd>
+          <dt>Email</dt><dd>yuchen3188@gmail.com</dd>
+          <dt>電話</dt><dd>0978-310-658</dd>
+          <dt>語言</dt><dd>中文（母語）・英文中等・台語中等</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">STORY</span>
+      <h2>自傳</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="story-content">
+
+      <div class="story-block">
+        <h4>自我介紹</h4>
+        <p>您好，感謝您撥冗閱讀我的履歷與自傳。我是葉宥辰，擁有十二年以上跨產業工作經歷，橫跨廣告設計、產品開發與數位行銷領域，期盼有機會加入貴公司，將過去累積的實務經驗貢獻在合適的位置上。</p>
+      </div>
+
+      <div class="story-block">
+        <h4>求學過程</h4>
+        <p>大學就讀於台南應用科技大學國際企業經營系，求學期間曾加入學生會擔任幹部，負責籌辦校內大型晚會活動，除了統籌活動流程與現場執行，也主動接洽校園周邊商家爭取贊助，練習如何在有限預算下整合外部資源、與立場不同的人溝通協調。這段經驗是我第一次體會到「把一件事從無到有辦成」需要的耐心與組織能力，也成為日後投入專案管理工作的起點。</p>
+      </div>
+
+      <div class="story-block">
+        <h4>工作經歷</h4>
+        <p>進入職場後，我從廣告行銷公司的創意指導做起，負責客製化網站設計與客戶溝通，並曾主導公司內部新軟體導入，制定版本控管規範與教育訓練，讓專案結案效率明顯提升。之後轉任資訊公司專案經理，完整參與系統從 wireframe、prototype 到測試上線的流程，撰寫系統需求書並如期交付成果。近年，我在保健食品產業獨立完成三個官方網站建置，並主導 LINE AI 客服系統導入專案，比較超過五家廠商後選定合作對象，上線後協助解決七成以上的客服問題；同時也曾參與旅遊住宿平台 App 的產品規劃，從零打造研發流程，並在苗栗縣農漁牧業休閒觀光推展協會期間，負責撰寫並執行多項政府補助計畫，成功爭取外部資源挹注地方社區。</p>
+      </div>
+
+      <div class="story-block">
+        <h4>學習歷程</h4>
+        <p>回顧這段歷程，我理解到每個階段所需要的能力其實環環相扣：從設計思維出發，補足了我對使用者行為與產品邏輯的理解；進入行銷領域後，我開始學習用 GA4、GTM 與 Meta 廣告投放的數據驗證決策，而不只是憑經驗判斷；接觸 AI 工具導入專案後，也讓我更清楚系統評估與跨部門溝通在數位轉型中的重要性。這些能力並非一開始就具備，而是透過每一次專案的實作與檢討逐步累積起來的。</p>
+      </div>
+
+      <div class="story-block">
+        <h4>職涯規劃</h4>
+        <p>展望未來，我希望能加入以 B2B 為主的公司，往管理職發展，並持續深耕數位產品運營與行銷策略這個方向。我相信，過去累積的專案執行力與跨部門協調經驗，能協助我在管理職位上更快掌握團隊運作與資源分配的節奏；同時，我也期待能將自己在數位工具與數據分析上的實務經驗，轉化為協助公司提升營運效率與市場競爭力的具體貢獻，誠摯期盼有機會與您進一步面談，說明過往經歷如何對應貴公司的需求。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="competencies" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">CORE</span>
+      <h2>核心能力</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <span class="comp-tag">#專案管理</span>
+        <h3>需求到交付的完整流程</h3>
+        <p>需求訪談、系統需求分析書（RA／SA）撰寫、專案排程、跨部門協調、委外廠商契約與驗收。</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-tag">#產品開發</span>
+        <h3>0 到 1 的產品規劃</h3>
+        <p>使用者流程設計、Webflow／WordPress 建置，與工程師協作評估技術可行性。</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-tag">#數位執行</span>
+        <h3>會看數字，也會調整策略</h3>
+        <p>SEO／GA4／GTM 數據追蹤、Meta 廣告投放與成效優化、AI 客服系統評估與導入。</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-tag">#資源整合</span>
+        <h3>對外溝通與資源媒合</h3>
+        <p>政府補助計畫撰寫與執行、企業 CSR 專案媒合、跨組織對外聯繫窗口。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">LOG</span>
+      <h2>工作經歷</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="timeline">
+
+      <article class="job">
+        <div class="job-id"><span class="num">06</span><span class="status-pill open"><span class="status-dot"></span>OPEN</span></div>
+        <div>
+          <div class="job-head"><h3>專案經理</h3></div>
+          <p class="job-meta">苗栗縣農漁牧業休閒觀光推展協會（旅遊服務業）<span class="period">2025/11 – 2026/03</span></p>
+          <ul>
+            <li>負責政府補助案撰寫與執行（農業部農村發展及水土保持署、地方創生計畫等），成功爭取外部資源挹注社區</li>
+            <li>擔任民間企業（冠軍磁磚）與協會之間的專案窗口，對接企業社會責任（CSR）資源</li>
+            <li>主導協會數位行銷與社群渠道經營，代表協會出席區域會員大會、年度成果發表會</li>
+          </ul>
+          <div class="chip-row"><span class="chip">政府補助案</span><span class="chip">CSR媒合</span><span class="chip">社群經營</span></div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-id"><span class="num">05</span><span class="status-pill closed"><span class="status-dot"></span>CLOSED</span></div>
+        <div>
+          <div class="job-head"><h3>行銷企劃（產品建置與導入專案負責人）</h3></div>
+          <p class="job-meta">亞鋐生醫國際有限公司（藥品／化妝品零售業）<span class="period">2024/11 – 2025/09</span></p>
+          <ul>
+            <li>獨立規劃並完成 3 個公司官方網站建置（需求訪談、架構設計、SEO 初步設定、GA／GTM 安裝），持續維運 4 個網站</li>
+            <li>主導 LINE AI 客服系統評估與導入：比較 5 家以上廠商、設計使用情境與知識庫，上線後解決 70% 以上客服問題</li>
+            <li>負責對外合作洽談，完成 6 位醫師代言合作與保健食品電商通路建立，並與律師協作完成合約審視</li>
+          </ul>
+          <div class="chip-row"><span class="chip">WordPress</span><span class="chip">AI客服導入</span><span class="chip">Meta廣告</span><span class="chip">GA4/GTM</span></div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-id"><span class="num">04</span><span class="status-pill closed"><span class="status-dot"></span>CLOSED</span></div>
+        <div>
+          <div class="job-head"><h3>產品經理</h3></div>
+          <p class="job-meta">朵茉行館投資案（數位內容產業）<span class="period">2023/08 – 2024/09</span></p>
+          <ul>
+            <li>主導訂房類產品從 0 到 1 的完整發想與開發，涵蓋預訂、購物、社群互動等功能規劃</li>
+            <li>參與產品策略定位與市場研究，規劃雲端部署方案以解決資料延遲與流量管控問題</li>
+            <li>統籌工程人力與成本控管，權衡技術需求與營運資源</li>
+          </ul>
+          <div class="chip-row"><span class="chip">產品0→1</span><span class="chip">雲端部署規劃</span><span class="chip">成本控管</span></div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-id"><span class="num">03</span><span class="status-pill closed"><span class="status-dot"></span>CLOSED</span></div>
+        <div>
+          <div class="job-head"><h3>專案經理</h3></div>
+          <p class="job-meta">采威國際資訊股份有限公司（電腦軟體服務業，100–500人）<span class="period">2023/02 – 2023/07</span></p>
+          <ul>
+            <li>評估系統開發前之軟硬體、網路與安全需求，負責系統雛型設計以確認專案初期方向</li>
+            <li>撰寫專案交付文件（RA、SA、委外合作廠商契約、成果報告書），並定期維運系統確保穩定運行</li>
+            <li>彙整承辦方需求並交辦相關事宜，擔任對外聯絡窗口</li>
+          </ul>
+          <div class="chip-row"><span class="chip">RA/SA文件</span><span class="chip">系統雛型</span><span class="chip">供應商協調</span></div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-id"><span class="num">02</span><span class="status-pill closed"><span class="status-dot"></span>CLOSED</span></div>
+        <div>
+          <div class="job-head"><h3>創意指導／產品企劃主管</h3></div>
+          <p class="job-meta">聖僑資訊事業股份有限公司（網際網路相關業，30–100人）<span class="period">2015/05 – 2023/02</span></p>
+          <ul>
+            <li>負責客製化網站介面設計、產品開發與優化，主導主視覺方向規劃與客戶提案</li>
+            <li>擔任客戶與工程團隊間的溝通橋樑，評估技術可行性並關注開發後效能</li>
+            <li>為公司導入新軟體，制定作業規範、版本控管，提供為期 3 個月的教育訓練，提升專案結案效率</li>
+            <li>累積 60 項以上專案開發流程、100 項以上提案設計經驗</li>
+          </ul>
+          <div class="chip-row"><span class="chip">網站設計</span><span class="chip">客戶溝通</span><span class="chip">團隊指導</span></div>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-id"><span class="num">01</span><span class="status-pill closed"><span class="status-dot"></span>CLOSED</span></div>
+        <div>
+          <div class="job-head"><h3>工程助理</h3></div>
+          <p class="job-meta">群創電子 CHIMEI INNOLUX（光電產業，500人以上）<span class="period">2008/02 – 2014/09</span></p>
+          <ul>
+            <li>負責薄膜電晶體電路顯示電性修復工作，熟悉各尺寸產品製程 SOP，配合工程師遠端協作</li>
+          </ul>
+          <div class="chip-row"><span class="chip">製程SOP</span><span class="chip">產線協作</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">PORTFOLIO</span>
+      <h2>專案實績</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="project-group">
+      <div class="project-group-head">
+        <span class="idx">01</span>
+        <h4>專案管理｜政府與公部門標案</h4>
+      </div>
+      <div class="project-grid">
+        <div class="project-card">
+          <span class="name">中央研究院環境變遷研究中心</span>
+          <div class="project-links">
+            <a href="https://ccrab.rcec.sinica.edu.tw/CGR/CGRHome" target="_blank" rel="noopener">ccrab.rcec.sinica.edu.tw</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">公共圖書資訊服務網</span>
+          <div class="project-links">
+            <a href="https://plisnet.nlpi.edu.tw/" target="_blank" rel="noopener">plisnet.nlpi.edu.tw</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">動物保護資訊網</span>
+          <div class="project-links">
+            <a href="https://animal.moa.gov.tw/" target="_blank" rel="noopener">animal.moa.gov.tw</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">東勢林場文化區</span>
+          <div class="project-links">
+            <a href="https://www.tsfa.com.tw/" target="_blank" rel="noopener">tsfa.com.tw</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-group">
+      <div class="project-group-head">
+        <span class="idx">02</span>
+        <h4>商業網站｜品牌與企業官網</h4>
+      </div>
+      <div class="project-grid">
+        <div class="project-card">
+          <span class="name">信揚控股</span>
+          <div class="project-links">
+            <a href="https://www.rayprustech.com/" target="_blank" rel="noopener">rayprustech.com</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">大井泵浦</span>
+          <div class="project-links">
+            <a href="https://www.walruspump.com/" target="_blank" rel="noopener">walruspump.com</a>
+            <a href="https://www.process-group.com/taiwan/project/walrus/" target="_blank" rel="noopener">process-group.com<span class="tag">品牌方</span></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">百德</span>
+          <div class="project-links">
+            <a href="https://www.quaser.com/" target="_blank" rel="noopener">quaser.com</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">嘉森真空</span>
+          <div class="project-links">
+            <a href="http://www.javac-tech.com/" target="_blank" rel="noopener">javac-tech.com</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="name">曙光機械</span>
+          <div class="project-links">
+            <a href="https://www.dawn-machinery.com.tw/" target="_blank" rel="noopener">dawn-machinery.com.tw</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">TOOLS</span>
+      <h2>工具與技能</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>專案／協作</h4>
+        <div class="chip-row">
+          <span class="chip">Microsoft Teams</span><span class="chip">Notion</span><span class="chip">Whimsical</span><span class="chip">Google Workspace</span><span class="chip">Trello</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>產品／設計</h4>
+        <div class="chip-row">
+          <span class="chip">Figma</span><span class="chip">Adobe XD</span><span class="chip">Photoshop</span><span class="chip">Illustrator</span><span class="chip">Webflow</span><span class="chip">WordPress</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>開發基礎</h4>
+        <div class="chip-row">
+          <span class="chip">HTML/CSS</span><span class="chip">JavaScript</span><span class="chip">Vue3</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>數據與行銷</h4>
+        <div class="chip-row">
+          <span class="chip">Google Analytics</span><span class="chip">GTM</span><span class="chip">Google Ads</span><span class="chip">Meta廣告</span><span class="chip">Canva</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>AI 工具</h4>
+        <div class="chip-row">
+          <span class="chip">ChatGPT</span><span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">NotebookLM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>語言能力</h4>
+        <div class="chip-row">
+          <span class="chip">中文（母語）</span><span class="chip">英文・中等</span><span class="chip">台語・中等</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">BACKGROUND</span>
+      <h2>學歷與證照</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <h4>台南應用科技大學</h4>
+        <p class="sub">國際企業經營系・大學畢業</p>
+        <p class="period">2003/09 – 2007/06</p>
+      </div>
+      <div class="edu-card">
+        <h4>雲林崇先高中</h4>
+        <p class="sub">普通科・高中畢業</p>
+        <p class="period">2000/09 – 2002/06</p>
+      </div>
+      <div class="edu-card">
+        <h4>卡內基訓練結業證書</h4>
+        <p class="sub">金色徽章</p>
+      </div>
+      <div class="edu-card">
+        <h4>卡內基訓練傑出表現獎</h4>
+        <p class="sub">團隊表決選出</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <p>目前正在找台中地區的專案經理／產品經理職缺，全職、日班，也歡迎討論遠端合作的可能性。歡迎來信或來電聊聊。</p>
+    <div class="footer-actions">
+      <a class="btn btn-primary" href="mailto:yuchen3188@gmail.com">yuchen3188@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:0978310658">0978-310-658</a>
+    </div>
+    <div class="footer-bottom">
+      <span>葉宥辰 Yuchen Ye</span>
+      <span>台中市・可遠端</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
